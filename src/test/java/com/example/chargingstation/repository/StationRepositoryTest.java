@@ -20,8 +20,10 @@ class StationRepositoryTest {
     public StationRepository repository;
 
     @Test
+    @DirtiesContext
     void getByPostCodeCorrectly(){
-        assertEquals(21, repository.findAllByPostCode("22017").size());
+        repository.save(new Station(STATION_ID,POSTCODE,LATITUDE,LONGITUDE));
+        assertEquals(1, repository.findAllByPostCode(POSTCODE).size());
     }
 
     @Test
